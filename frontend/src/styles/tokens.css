@@ -1,0 +1,128 @@
+/*
+ * Design tokens for Music Trainer — "the signal path" (docs/07).
+ * The ONLY file allowed to hold raw colour values. Everything else reads these.
+ * Paper and ink in light mode; blue-black studio with warm whites in dark mode.
+ * One accent (Balochi embroidery red), one signal colour (teal) for live activity.
+ */
+:root {
+  color-scheme: light;
+
+  --color-bg: #f6f2ea;
+  --color-surface: #fffdf8;
+  --color-surface-2: #efe9dd;
+  --color-ink: #1d1b18;
+  --color-muted: #6b645a;
+  --color-line: #d9d1c3;
+  --color-line-strong: #b9ad99;
+  --color-accent: #a3262a;
+  --color-accent-ink: #fffdf8;
+  --color-signal: #127a74;
+  --color-signal-soft: #127a7426;
+  --color-ok: #2f7a3a;
+  --color-warn: #b7791f;
+  --color-warn-soft: #b7791f24;
+  --color-fail: #b42318;
+  --color-fail-soft: #b4231818;
+  --color-scrim: #1d1b1866;
+
+  /* chart series: mel is the signal colour, the rest are quieter companions */
+  --color-series-1: #127a74;
+  --color-series-2: #a3262a;
+  --color-series-3: #6d5a9c;
+  --color-series-4: #b7791f;
+  --color-series-5: #5b6b7d;
+
+  --font-sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+
+  --radius: 6px;
+  --radius-lg: 10px;
+  --space: 4px;
+  --space-1: calc(var(--space) * 1);
+  --space-2: calc(var(--space) * 2);
+  --space-3: calc(var(--space) * 3);
+  --space-4: calc(var(--space) * 4);
+  --space-6: calc(var(--space) * 6);
+  --space-8: calc(var(--space) * 8);
+  --space-12: calc(var(--space) * 12);
+
+  --measure: 72rem;
+  --node-size: 14px;
+  --cable-height: 2px;
+  --log-row: 20px;
+
+  --dur-fast: 120ms;
+  --dur: 240ms;
+  --dur-meter: 200ms;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-bg: #0f1216;
+    --color-surface: #161b21;
+    --color-surface-2: #1c232b;
+    --color-ink: #efe9df;
+    --color-muted: #9a958c;
+    --color-line: #2a313a;
+    --color-line-strong: #3d4651;
+    --color-accent: #e0565b;
+    --color-accent-ink: #0f1216;
+    --color-signal: #3cc3b8;
+    --color-signal-soft: #3cc3b82e;
+    --color-ok: #5cb86a;
+    --color-warn: #e0a640;
+    --color-warn-soft: #e0a64029;
+    --color-fail: #f0645a;
+    --color-fail-soft: #f0645a1f;
+    --color-scrim: #000000a6;
+    --color-series-1: #3cc3b8;
+    --color-series-2: #e0565b;
+    --color-series-3: #a993de;
+    --color-series-4: #e0a640;
+    --color-series-5: #8fa1b5;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #0f1216;
+  --color-surface: #161b21;
+  --color-surface-2: #1c232b;
+  --color-ink: #efe9df;
+  --color-muted: #9a958c;
+  --color-line: #2a313a;
+  --color-line-strong: #3d4651;
+  --color-accent: #e0565b;
+  --color-accent-ink: #0f1216;
+  --color-signal: #3cc3b8;
+  --color-signal-soft: #3cc3b82e;
+  --color-ok: #5cb86a;
+  --color-warn: #e0a640;
+  --color-warn-soft: #e0a64029;
+  --color-fail: #f0645a;
+  --color-fail-soft: #f0645a1f;
+  --color-scrim: #000000a6;
+  --color-series-1: #3cc3b8;
+  --color-series-2: #e0565b;
+  --color-series-3: #a993de;
+  --color-series-4: #e0a640;
+  --color-series-5: #8fa1b5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-meter: 0ms;
+  }
+}

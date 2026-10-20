@@ -1,0 +1,76 @@
+.dataset-screen { display: grid; gap: var(--space-2); }
+.dataset-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 0 var(--space-8); }
+
+/* minutes gauge */
+.gauge { display: grid; gap: var(--space-8); padding-bottom: var(--space-6); }
+.gauge-readout { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); }
+.gauge-value { font-size: var(--text-2xl); font-weight: 500; letter-spacing: -0.02em; }
+.gauge-unit { color: var(--color-muted); }
+.gauge-note { font-size: var(--text-sm); }
+.gauge[data-tone="fail"] .gauge-value, .gauge[data-tone="fail"] .gauge-note { color: var(--color-fail); }
+.gauge[data-tone="warn"] .gauge-value, .gauge[data-tone="warn"] .gauge-note { color: var(--color-warn); }
+.gauge[data-tone="ok"] .gauge-note { color: var(--color-ok); }
+.gauge-track { position: relative; height: 10px; border-radius: 5px; background: var(--color-line); }
+.gauge-fill {
+  position: absolute; inset: 0; border-radius: 5px;
+  background: var(--color-signal); transform-origin: left center;
+  transition: transform var(--dur) var(--ease);
+}
+.gauge[data-tone="fail"] .gauge-fill { background: var(--color-fail); }
+.gauge[data-tone="warn"] .gauge-fill { background: var(--color-warn); }
+.gauge-mark { position: absolute; top: -6px; bottom: -6px; width: 0; border-left: 1.5px solid var(--color-ink); }
+.gauge-mark-label { position: absolute; top: -20px; transform: translateX(-50%); font-size: var(--text-xs); }
+.gauge-mark-sub { position: absolute; top: 22px; transform: translateX(-50%); font-size: var(--text-2xs); color: var(--color-muted); white-space: nowrap; }
+
+.qc-counts { display: flex; gap: var(--space-6); margin: 0; }
+.qc-counts dt { font-size: var(--text-2xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-mono); }
+.qc-counts dd { margin: 0; font-size: var(--text-lg); }
+.qc-counts [data-tone="ok"] dd { color: var(--color-ok); }
+.qc-counts [data-tone="fail"] dd { color: var(--color-fail); }
+
+/* era balance */
+.era-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.era-row { display: grid; grid-template-columns: 5.5rem 1fr 4.5rem 2.5rem; gap: var(--space-3); align-items: center; font-size: var(--text-sm); }
+.era-name { font-family: var(--font-mono); font-size: var(--text-xs); }
+.era-bar { height: 8px; border-radius: 4px; }
+.era-bar > span { background: var(--color-accent); }
+
+/* piano */
+.piano { margin: 0; display: grid; gap: var(--space-3); }
+.piano-svg { width: 100%; height: auto; max-height: 96px; }
+.key-white { fill: var(--color-surface); stroke: var(--color-line-strong); stroke-width: 1; }
+.key-black { fill: var(--color-ink); }
+.key-white.in-range { fill: var(--color-signal-soft); }
+.key-black.in-range { fill: var(--color-signal); }
+.median-dot { fill: var(--color-accent); }
+.piano-label { font-family: var(--font-mono); font-size: 8px; fill: var(--color-muted); }
+.piano-caption { display: flex; flex-wrap: wrap; gap: var(--space-6); font-size: var(--text-sm); }
+
+/* rejected clips */
+.rejected { display: grid; gap: var(--space-3); }
+.reason-group { flex-wrap: wrap; justify-self: start; }
+.reason-group .num { opacity: 0.7; margin-left: var(--space-1); }
+.kbd-hint { font-size: var(--text-xs); }
+kbd {
+  font-family: var(--font-mono); font-size: var(--text-2xs);
+  padding: 0 var(--space-1); border: 1px solid var(--color-line-strong); border-bottom-width: 2px; border-radius: 3px;
+  background: var(--color-surface);
+}
+.clip-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-line); }
+.clip-row {
+  display: grid; grid-template-columns: minmax(9rem, 1fr) minmax(10rem, 2fr) auto auto;
+  gap: var(--space-4); align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+}
+.clip-row:focus-visible { outline-offset: -2px; background: var(--color-surface-2); }
+.clip-row[data-verdict="keep"] .clip-wave { opacity: 0.6; }
+.clip-meta { display: grid; font-size: var(--text-sm); min-width: 0; }
+.clip-title { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.clip-meta .num { font-size: var(--text-xs); }
+.clip-state { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.clip-actions { display: flex; gap: var(--space-1); }
+
+@media (max-width: 760px) {
+  .clip-row { grid-template-columns: 1fr; }
+}

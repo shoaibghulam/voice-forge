@@ -1,0 +1,68 @@
+# --- secrets -----------------------------------------------------------------
+# The workspace guard hook checks for this rule before letting credentials be
+# written. Do not remove it.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# --- dependencies -------------------------------------------------------------
+node_modules/
+.pnpm-store/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.tox/
+
+# --- build output --------------------------------------------------------------
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+*.tsbuildinfo
+
+# --- test + coverage -----------------------------------------------------------
+coverage/
+.pytest_cache/
+.nyc_output/
+playwright-report/
+test-results/
+
+# --- tooling caches ------------------------------------------------------------
+.cache/
+.eslintcache
+.ruff_cache/
+.mypy_cache/
+
+# --- editor / OS ---------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# --- Claude ---------------------------------------------------------------------
+# Shared project harness is committed; personal overrides are not.
+.claude/settings.local.json
+.claude/.cache/
+
+# --- music trainer runtime -------------------------------------------------------
+# Applio checkout + its venv, model weights, user audio and the SQLite db are local
+# state, never source.
+engine/
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# --- not part of the app ----------------------------------------------------------
+# The old Colab notebook (kept locally for reference).
+*.ipynb

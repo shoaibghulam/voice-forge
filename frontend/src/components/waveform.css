@@ -1,0 +1,6 @@
+.waveform { position: relative; width: 100%; }
+.waveform-canvas { width: 100%; }
+.waveform[data-mode="loading"] .waveform-canvas,
+.waveform[data-mode="fallback"] .waveform-canvas { position: absolute; inset: 0; opacity: 0; }
+.waveform-svg { display: block; }
+.waveform-svg rect { fill: var(--color-line-strong); }

@@ -1,0 +1,48 @@
+/* System screen. Own `sys-` names: `.meter`, `.gpu-panel`, `.gpu-name` also exist on the
+   live run screen and all CSS ships in one bundle. */
+.system-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap: 0 var(--space-8);
+  align-items: start;
+}
+/* min-width: 0 so a long unbreakable doctor detail cannot widen its column past the page */
+.system-split > .section { align-content: start; min-width: 0; margin-top: 0; }
+
+.sys-gpu { display: grid; gap: var(--space-3); align-content: start; }
+.sys-gpu-name { font-weight: 600; font-size: var(--text-lg); overflow-wrap: anywhere; }
+.sys-gpu-facts { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: var(--space-6); margin: 0; }
+.sys-gpu-facts dt { font-size: var(--text-2xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-mono); }
+.sys-gpu-facts dd { margin: 0; }
+
+.sys-meter { display: grid; gap: var(--space-1); min-width: 0; }
+.sys-meter-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); font-size: var(--text-sm); white-space: nowrap; }
+.sys-meter-track { position: relative; height: 10px; border-radius: 2px; overflow: hidden; background: var(--color-line); }
+.sys-meter-track > span {
+  position: absolute; inset: 0; transform-origin: left center; background: var(--color-signal);
+  transition: transform var(--dur-meter) var(--ease);
+}
+.sys-meter[data-tone="warn"] .sys-meter-track > span { background: var(--color-warn); }
+.sys-meter[data-tone="fail"] .sys-meter-track > span { background: var(--color-fail); }
+
+.doctor-list { list-style: none; margin: 0; padding: 0; min-width: 0; }
+.doctor-row { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) auto; gap: var(--space-3); align-items: start; padding: var(--space-2) 0; border-bottom: 1px solid var(--color-line); }
+.doctor-icon { font-weight: 700; text-align: center; color: var(--color-ok); }
+.doctor-row[data-status="warn"] .doctor-icon { color: var(--color-warn); }
+.doctor-row[data-status="fail"] .doctor-icon { color: var(--color-fail); }
+.doctor-text { display: grid; gap: 2px; font-size: var(--text-sm); min-width: 0; }
+.doctor-label { font-weight: 500; overflow-wrap: anywhere; }
+/* paths and versions: wrap anywhere rather than push the page sideways */
+.doctor-detail { font-size: var(--text-xs); overflow-wrap: anywhere; word-break: break-word; }
+.doctor-hint { font-size: var(--text-xs); padding-left: var(--space-2); border-left: 2px solid var(--color-warn); overflow-wrap: anywhere; }
+.doctor-row[data-status="fail"] .doctor-hint { border-left-color: var(--color-fail); }
+
+.bench-stage { display: grid; gap: 2px; }
+/* numbers and units stay together; the table scrolls inside its wrapper on a phone */
+.sys-bench td.num, .sys-bench th.num { white-space: nowrap; }
+.bench-stage-name { font-family: var(--font-mono); font-weight: 600; }
+.bench-stage-label { font-size: var(--text-xs); color: var(--color-muted); font-weight: 400; }
+
+@media (max-width: 640px) {
+  .sys-gpu-facts { grid-template-columns: repeat(2, auto); }
+}

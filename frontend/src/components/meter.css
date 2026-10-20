@@ -1,0 +1,26 @@
+.meter {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr minmax(7.5rem, auto);
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+}
+.meter-label { font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); }
+.meter-track {
+  position: relative;
+  height: 10px;
+  background: var(--color-surface-2);
+  /* segmented like a VU meter */
+  mask-image: repeating-linear-gradient(90deg, black 0 7px, transparent 7px 9px);
+  -webkit-mask-image: repeating-linear-gradient(90deg, black 0 7px, transparent 7px 9px);
+}
+.meter-fill {
+  position: absolute; inset: 0;
+  background: var(--color-signal);
+  transform-origin: left center;
+  transition: transform var(--dur-meter) var(--ease);
+  will-change: transform;
+}
+.meter[data-warn="true"] .meter-fill { background: var(--color-warn); }
+.meter[data-warn="true"] .meter-value { color: var(--color-warn); }
+.meter-value { text-align: right; }

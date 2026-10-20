@@ -1,0 +1,8 @@
+.digit-roll { display: inline-flex; line-height: 1; }
+.digit-roll-window { display: inline-block; height: 1em; overflow: hidden; }
+.digit-roll-column {
+  display: flex; flex-direction: column;
+  transition: transform var(--dur) var(--ease);
+  will-change: transform;
+}
+.digit-roll-column > span { height: 1em; line-height: 1; }

@@ -1,0 +1,59 @@
+[project]
+name = "music-trainer"
+version = "1.0.0"
+description = "Singing voice trainer and converter"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "nvidia-ml-py>=13",
+    "psutil>=7",
+    "sqlalchemy>=2.1",
+    "alembic>=1.16",
+    "tuspyserver>=4.4",
+    "filetype>=1.2",
+    "python-multipart>=0.0.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.28",
+    "ruff>=0.8",
+    "mypy>=1.13",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "S", "A", "C4", "SIM", "RUF"]
+# S101 (assert) is the point of a test file; ARG/B008 are FastAPI's DI idiom.
+ignore = ["B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[[tool.mypy.overrides]]
+# nvidia-ml-py and filetype ship no type stubs.
+module = ["pynvml", "filetype"]
+ignore_missing_imports = true

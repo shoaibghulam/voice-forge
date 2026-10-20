@@ -1,0 +1,9 @@
+.reel { display: inline-flex; align-items: center; gap: var(--space-3); }
+.reel-spokes { transform-origin: 0 0; transform-box: view-box; }
+.reel-rim { fill: none; stroke: var(--color-line-strong); stroke-width: 2; }
+.reel-tape { fill: var(--color-ink); opacity: 0.85; }
+.reel-window { fill: var(--color-surface); }
+.reel-hub { fill: var(--color-surface); stroke: var(--color-ink); stroke-width: 2; }
+.reel-key { fill: var(--color-ink); }
+.reel[data-spinning="true"] .reel-rim { stroke: var(--color-signal); }
+.reel-rate { font-size: var(--text-xs); color: var(--color-muted); }

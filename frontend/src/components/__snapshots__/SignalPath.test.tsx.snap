@@ -1,0 +1,147 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`reduced motion > matches the reduced-motion snapshot 1`] = `
+<ol
+  aria-label="Pipeline stages"
+  class="sp-list"
+>
+  <li
+    class="sp-stage"
+    data-status="done"
+  >
+    <span
+      aria-hidden="true"
+      class="sp-node"
+    >
+      <span
+        class="sp-glyph"
+      >
+        ✓
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="sp-cable"
+      data-state="lit"
+    />
+    <span
+      class="sp-label"
+    >
+      validate
+    </span>
+    <span
+      class="sp-detail num"
+    >
+      0:42
+    </span>
+    <span
+      class="visually-hidden"
+    >
+      , 
+      done
+    </span>
+  </li>
+  <li
+    class="sp-stage"
+    data-status="skipped"
+  >
+    <span
+      aria-hidden="true"
+      class="sp-node"
+    >
+      <span
+        class="sp-glyph"
+      >
+        –
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="sp-cable"
+      data-state="lit"
+    />
+    <span
+      class="sp-label"
+    >
+      denoise
+    </span>
+    <span
+      class="sp-detail num"
+    >
+      skipped
+    </span>
+    <span
+      class="visually-hidden"
+    >
+      , 
+      skipped
+    </span>
+  </li>
+  <li
+    class="sp-stage"
+    data-status="failed"
+  >
+    <span
+      aria-hidden="true"
+      class="sp-node"
+    >
+      <span
+        class="sp-glyph"
+      >
+        ✕
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="sp-cable"
+      data-state="fail"
+    />
+    <span
+      class="sp-label"
+    >
+      pitch + feats
+    </span>
+    <span
+      class="sp-detail num"
+    >
+      failed
+    </span>
+    <span
+      class="visually-hidden"
+    >
+      , 
+      failed
+    </span>
+  </li>
+  <li
+    aria-current="step"
+    class="sp-stage"
+    data-status="running"
+  >
+    <span
+      aria-hidden="true"
+      class="sp-node"
+    >
+      <span
+        class="sp-glyph"
+      />
+    </span>
+    <span
+      class="sp-label"
+    >
+      train
+    </span>
+    <span
+      class="sp-detail num"
+    >
+      ep 3/40
+    </span>
+    <span
+      class="visually-hidden"
+    >
+      , 
+      running
+    </span>
+  </li>
+</ol>
+`;
