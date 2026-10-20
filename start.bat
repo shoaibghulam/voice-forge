@@ -5,11 +5,11 @@ setlocal
 cd /d "%~dp0"
 
 if not exist "backend\.venv\Scripts\python.exe" (
-  echo Backend is not installed. See docs\INSTALL.md, step 3.
+  echo Backend is not installed. See README.md, Quick start step 1.
   pause & exit /b 1
 )
 if not exist "engine\.venv\Scripts\python.exe" (
-  echo The engine ^(Applio^) is not installed. See docs\INSTALL.md, step 4.
+  echo The engine ^(Applio^) is not installed. See README.md, Quick start step 2.
   pause & exit /b 1
 )
 if not exist "frontend\dist\index.html" (

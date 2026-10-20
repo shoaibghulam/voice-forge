@@ -32,8 +32,6 @@ sounds, not the words.
 
 ## Quick start
 
-Full step-by-step guide: **[docs/INSTALL.md](docs/INSTALL.md)**. In short:
-
 ```bat
 git clone https://github.com/shoaibghulam/voice-forge.git
 cd voice-forge
@@ -42,9 +40,21 @@ rem 1. backend (API + GPU worker)
 cd backend
 uv venv --python 3.12 .venv
 uv pip install --python .venv\Scripts\python.exe -e ".[dev]"
+.venv\Scripts\alembic.exe upgrade head
 cd ..
 
-rem 2. engine (Applio + vocal separation) - see docs/INSTALL.md step 4
+rem 2. engine: Applio + vocal separation + lyrics, in its OWN venv (never in backend\.venv)
+mkdir engine
+git clone https://github.com/IAHispano/Applio.git engine\applio
+git -C engine\applio checkout 5379cf261fa7d8085c3b077aa42dabca7c85310b
+copy engine\applio\assets\config_template.json engine\applio\assets\config.json
+cd engine
+uv venv --python 3.12 .venv
+uv pip install --python .venv\Scripts\python.exe -r applio\requirements-engine.txt "audio-separator[gpu]" --extra-index-url https://download.pytorch.org/whl/cu128 --index-strategy unsafe-best-match
+uv pip install --python .venv\Scripts\python.exe --no-deps faster-whisper==1.2.1 ctranslate2==4.8.3 av==19.0.1
+cd applio
+..\.venv\Scripts\python.exe core.py prerequisites --models --pretraineds-hifigan --exe
+cd ..\..
 
 rem 3. models, about 5.5 GB, once
 cd backend
@@ -64,6 +74,21 @@ start.bat
 `start.bat` migrates the database, starts the API and the GPU worker, and opens
 **http://127.0.0.1:8000/**. Open **System** in the app: every check should be green.
 
+**Tip:** in NVIDIA Control Panel → Manage 3D settings → Program settings, add
+`engine\.venv\Scripts\python.exe` and set *CUDA – Sysmem Fallback Policy* to
+**Prefer No Sysmem Fallback**, so a job short of VRAM fails fast instead of running
+5–10× slower.
+
+### Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| System page: *Engine sees the GPU* is red | Reinstall step 2; check `nvidia-smi` |
+| *Separation models* or *analysis models* is red | Run step 3 again |
+| Job fails with `cuda_oom` | Close other GPU programs, then **Resume** |
+| `frontend_not_built` at :8000 | Run step 4, or use `npm run dev` on :5173 |
+| Port 8000 in use | Close the other program, or change the port in `start.bat` and `frontend/vite.config.ts` |
+
 ## How to use it
 
 1. **Singers → New singer**, then drop that singer's songs (full songs, with music).
@@ -82,12 +107,9 @@ epoch for 20 minutes of singing, a 4-minute cover ≈ 3 minutes, a song analysis
 backend/          FastAPI API, SQLite, GPU job worker, pipeline stages, tests
 backend/engine_scripts/   scripts that run inside the engine venv (separation, lyrics, style)
 frontend/         React 19 + Vite web app, Vitest and Playwright tests
-docs/             design docs: architecture, ML pipeline, API, frontend, task list
 start.bat         one-click start
 engine/, data/    local only (Applio checkout, models, your audio) - not in git
 ```
-
-The design docs start at [docs/README.md](docs/README.md).
 
 ## Architecture in brief
 

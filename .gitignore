@@ -50,9 +50,10 @@ Thumbs.db
 !.vscode/extensions.json
 
 # --- Claude ---------------------------------------------------------------------
-# Shared project harness is committed; personal overrides are not.
-.claude/settings.local.json
-.claude/.cache/
+# Claude Code harness and design docs stay local.
+.claude/
+CLAUDE.md
+docs/
 
 # --- music trainer runtime -------------------------------------------------------
 # Applio checkout + its venv, model weights, user audio and the SQLite db are local

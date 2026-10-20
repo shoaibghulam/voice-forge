@@ -4,9 +4,8 @@ Thanks for helping. These are the rules the codebase already follows — please 
 
 ## Setup
 
-Follow [docs/INSTALL.md](docs/INSTALL.md). Read the design doc for the stage you are
-changing first ([docs/README.md](docs/README.md) is the index); the docs are the source
-of truth and should be updated in the same change.
+Follow the Quick start in [README.md](README.md). Keep the README up to date in the
+same change when you alter setup steps or behaviour.
 
 ## Workflow
 
